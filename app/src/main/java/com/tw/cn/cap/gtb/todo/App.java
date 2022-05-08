@@ -12,11 +12,16 @@ public class App {
     }
 
     public List<String> run() {
+        final List<String> lines = loadTaskLines();
+        final List<String> result = new ArrayList<>();
+        result.add("# To be Done");
+        result.addAll(lines);
+        return result;
+    }
+
+    private List<String> loadTaskLines() {
         try {
-            final List<String> result = new ArrayList<>();
-            result.add("# To be Done");
-            result.addAll(Files.readAllLines(Constants.TASK_FILE_PATH));
-            return result;
+            return Files.readAllLines(Constants.TASK_FILE_PATH);
         } catch (IOException e) {
             throw new TodoCannotReadFileException();
         }
