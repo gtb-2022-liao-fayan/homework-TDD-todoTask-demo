@@ -1,31 +1,25 @@
 package com.tw.cn.cap.gtb.todo;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
 public class App {
+
+    private final TaskRepository taskRepository = new TaskRepository();
 
     public static void main(String[] args) {
 
     }
 
     public List<String> run() {
-        final List<String> lines = loadTaskLines();
+        final List<Task> tasks = taskRepository.loadTasks();
         final List<String> result = new ArrayList<>();
         result.add("# To be Done");
-        for (int i = 0; i < lines.size(); i++) {
-            result.add(String.format("%d %s", i + 1, lines.get(i)));
+        for (var task : tasks) {
+            result.add(task.format());
         }
         return result;
     }
 
-    private List<String> loadTaskLines() {
-        try {
-            return Files.readAllLines(Constants.TASK_FILE_PATH);
-        } catch (IOException e) {
-            throw new TodoCannotReadFileException();
-        }
-    }
+
 }
