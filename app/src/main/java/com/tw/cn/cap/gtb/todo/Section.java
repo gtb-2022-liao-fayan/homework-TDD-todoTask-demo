@@ -17,7 +17,7 @@ public class Section {
     }
 
     static Section tbd() {
-        return new Section("# To be Done", false);
+        return new Section("# To be done", false);
     }
 
     List<String> format(List<Task> tasks) {
