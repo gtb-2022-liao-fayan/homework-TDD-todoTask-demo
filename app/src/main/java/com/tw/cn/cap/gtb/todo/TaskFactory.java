@@ -5,7 +5,9 @@ public class TaskFactory {
 
     }
     public static Task createTask(int id, String line) {
-        final var name = line.split(" ", 2)[1];
-        return new Task(id, name);
+        final var filed = line.split(" ", 2);
+        final var name = filed[1];
+        boolean completed = filed[0].equals("x");
+        return new Task(id, name, completed);
     }
 }
