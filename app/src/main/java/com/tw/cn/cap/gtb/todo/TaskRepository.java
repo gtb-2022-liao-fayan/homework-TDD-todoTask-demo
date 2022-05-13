@@ -12,8 +12,10 @@ public class TaskRepository {
     List<Task> loadTasks() {
         final List<String> lines = loadTaskLines();
         final List<Task> tasks = new ArrayList<>();
-        for (int i = 0; i < lines.size(); i++) {
-            tasks.add(TaskFactory.createTask(i + 1, lines.get(i)));
+        if (lines.size() != 1) {
+            for (int i = 0; i < lines.size(); i++) {
+                tasks.add(TaskFactory.createTask(i + 1, lines.get(i)));
+            }
         }
         return tasks;
     }
